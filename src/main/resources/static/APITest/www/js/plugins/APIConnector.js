@@ -63,11 +63,11 @@ async function getPlayers() {
 
 async function getAllPlayers(){
   getPlayers();
-  Galv.SPAWN.clear($gameMap._mapId);
-  console.log(players);
-  console.log($gameMap._mapId);
+  console.log("$==GetAllPlayers==");
   for (playera of players) {
-    if($gameMap._mapId == playera.mapID)
+    console.log($gameMap._mapId);
+    console.log(playera.mapID);
+    if($gameMap._mapId == playera.mapID){
     console.log(playera);
     if(playera.id ==player.id){
 
@@ -79,7 +79,7 @@ async function getAllPlayers(){
     console.log($gameMap._events[$gameMap._lastSpawnEventId])
   }
   }
-}
+}}
 
 async function updateMyself(mapID,x,y) {
 player.x = x;
