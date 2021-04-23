@@ -7,16 +7,41 @@ public class PlayerDTO {
     private int mapID;
     private int x;
     private int y;
-	public PlayerDTO(long id, String username, int mapID, int x, int y) {
+    private int hp;
+    private int mp;
+    private int mhp;
+    private int mmp;
+    private int atk;
+    private int def;
+    private int mat;
+    private int mdf;
+    private int agi;
+    private int luk;
+
+    
+	
+	
+	public PlayerDTO(long id, String username, int mapID, int x, int y, int hp, int mp, int mhp, int mmp, int atk,
+			int def, int mat, int mdf, int agi, int luk) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.mapID = mapID;
 		this.x = x;
 		this.y = y;
+		this.hp = hp;
+		this.mp = mp;
+		this.mhp = mhp;
+		this.mmp = mmp;
+		this.atk = atk;
+		this.def = def;
+		this.mat = mat;
+		this.mdf = mdf;
+		this.agi = agi;
+		this.luk = luk;
 	}
-	
-	
+
+
 	public PlayerDTO() {
 		super();
 	}
@@ -51,6 +76,106 @@ public class PlayerDTO {
 	}
 	public void setY(int y) {
 		this.y = y;
+	}
+
+
+	public int getHp() {
+		return hp;
+	}
+
+
+	public int getMp() {
+		return mp;
+	}
+
+
+	public int getMhp() {
+		return mhp;
+	}
+
+
+	public int getMmp() {
+		return mmp;
+	}
+
+
+	public int getAtk() {
+		return atk;
+	}
+
+
+	public int getDef() {
+		return def;
+	}
+
+
+	public int getMat() {
+		return mat;
+	}
+
+
+	public int getMdf() {
+		return mdf;
+	}
+
+
+	public int getAgi() {
+		return agi;
+	}
+
+
+	public int getLuk() {
+		return luk;
+	}
+
+
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
+
+
+	public void setMp(int mp) {
+		this.mp = mp;
+	}
+
+
+	public void setMhp(int mhp) {
+		this.mhp = mhp;
+	}
+
+
+	public void setMmp(int mmp) {
+		this.mmp = mmp;
+	}
+
+
+	public void setAtk(int atk) {
+		this.atk = atk;
+	}
+
+
+	public void setDef(int def) {
+		this.def = def;
+	}
+
+
+	public void setMat(int mat) {
+		this.mat = mat;
+	}
+
+
+	public void setMdf(int mdf) {
+		this.mdf = mdf;
+	}
+
+
+	public void setAgi(int agi) {
+		this.agi = agi;
+	}
+
+
+	public void setLuk(int luk) {
+		this.luk = luk;
 	}
     
 }

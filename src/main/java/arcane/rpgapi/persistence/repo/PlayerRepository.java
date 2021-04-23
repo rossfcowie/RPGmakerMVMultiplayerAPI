@@ -16,4 +16,6 @@ public interface PlayerRepository extends JpaRepository<Player, Long>  {
 	
 	@Query(value = "SELECT * FROM Player WHERE username = ?1", nativeQuery = true)
 	public Optional<Player> findByUsername(String username);
+	@Query(value = "SELECT * FROM Player WHERE mapid = ?1 LIMIT 50", nativeQuery = true)
+	public List<Player> findbyMapID(Long mapid);
 }
