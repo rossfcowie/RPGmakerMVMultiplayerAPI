@@ -177,5 +177,82 @@ public class PlayerDTO {
 	public void setLuk(int luk) {
 		this.luk = luk;
 	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + agi;
+		result = prime * result + atk;
+		result = prime * result + def;
+		result = prime * result + hp;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + luk;
+		result = prime * result + mapID;
+		result = prime * result + mat;
+		result = prime * result + mdf;
+		result = prime * result + mhp;
+		result = prime * result + mmp;
+		result = prime * result + mp;
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		result = prime * result + x;
+		result = prime * result + y;
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PlayerDTO other = (PlayerDTO) obj;
+		if (agi != other.agi)
+			return false;
+		if (atk != other.atk)
+			return false;
+		if (def != other.def)
+			return false;
+		if (hp != other.hp)
+			return false;
+		if (id != other.id)
+			return false;
+		if (luk != other.luk)
+			return false;
+		if (mapID != other.mapID)
+			return false;
+		if (mat != other.mat)
+			return false;
+		if (mdf != other.mdf)
+			return false;
+		if (mhp != other.mhp)
+			return false;
+		if (mmp != other.mmp)
+			return false;
+		if (mp != other.mp)
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		if (x != other.x)
+			return false;
+		if (y != other.y)
+			return false;
+		return true;
+	}
+
+
+	@Override
+	public String toString() {
+		return "PlayerDTO [id=" + id + ", username=" + username + ", mapID=" + mapID + ", x=" + x + ", y=" + y + ", hp="
+				+ hp + ", mp=" + mp + ", mhp=" + mhp + ", mmp=" + mmp + ", atk=" + atk + ", def=" + def + ", mat=" + mat
+				+ ", mdf=" + mdf + ", agi=" + agi + ", luk=" + luk + "]";
+	}
     
 }

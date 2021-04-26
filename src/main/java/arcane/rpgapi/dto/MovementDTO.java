@@ -59,4 +59,49 @@ public class MovementDTO {
 	}
 
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + mapID;
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		result = prime * result + x;
+		result = prime * result + y;
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MovementDTO other = (MovementDTO) obj;
+		if (id != other.id)
+			return false;
+		if (mapID != other.mapID)
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		if (x != other.x)
+			return false;
+		if (y != other.y)
+			return false;
+		return true;
+	}
+
+
+	@Override
+	public String toString() {
+		return "MovementDTO [id=" + id + ", username=" + username + ", mapID=" + mapID + ", x=" + x + ", y=" + y + "]";
+	}
+
+
 }

@@ -69,6 +69,16 @@ public class PlayerServiceUnitTest {
 		verify(mapper, times(1)).map(Mockito.any(), Mockito.any());
 	}
 	@Test
+	void readEveryTest() {
+		List<Player> players = List.of(validPlayer);
+		List<MovementDTO> movementDTOs = List.of(validMovementDTO);
+		when(repo.findAll()).thenReturn(players);
+		when(mapper.map(Mockito.any(), Mockito.any())).thenReturn(validMovementDTO);
+		Assertions.assertEquals(movementDTOs,playerService.read());
+		verify(repo, times(1)).findAll();
+		verify(mapper, times(1)).map(Mockito.any(), Mockito.any());
+	}
+	@Test
 	void readPlayerTest() {
 		when(repo.findById(Mockito.anyLong())).thenReturn(Optional.of(validPlayer));
 		when(mapper.map(Mockito.any(), Mockito.any())).thenReturn(validPlayerDTO);

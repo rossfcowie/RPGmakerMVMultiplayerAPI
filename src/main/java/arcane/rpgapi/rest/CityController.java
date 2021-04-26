@@ -34,12 +34,12 @@ public class CityController {
 	@PostMapping
 	public ResponseEntity<City> createCity(@RequestBody City city) {
 		City created =cityService.create(city);
-		return new ResponseEntity<>(created,HttpStatus.OK);
+		return new ResponseEntity<>(created,HttpStatus.CREATED);
 	}
 	@PostMapping(value = "/create")
 	public ResponseEntity<City> createCity(@RequestParam String name) {
 		City created =cityService.create(name);
-		return new ResponseEntity<>(created,HttpStatus.OK);
+		return new ResponseEntity<>(created,HttpStatus.CREATED);
 	}
 	@GetMapping(value = "/{name}")
 	public ResponseEntity<City> getCities(@PathVariable String name) {

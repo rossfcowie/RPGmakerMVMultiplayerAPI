@@ -164,5 +164,71 @@ public class City {
 	public void setBaracksLevel(long baracksLevel) {
 		this.baracksLevel = baracksLevel;
 	}
+
+	@Override
+	public String toString() {
+		return "City [id=" + id + ", name=" + name + ", theme=" + theme + ", castleLevel=" + castleLevel
+				+ ", forestLevel=" + forestLevel + ", mineLevel=" + mineLevel + ", farmLevel=" + farmLevel
+				+ ", innLevel=" + innLevel + ", itemShopLevel=" + itemShopLevel + ", armourShopLevel=" + armourShopLevel
+				+ ", weaponShopLevel=" + weaponShopLevel + ", baracksLevel=" + baracksLevel + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (armourShopLevel ^ (armourShopLevel >>> 32));
+		result = prime * result + (int) (baracksLevel ^ (baracksLevel >>> 32));
+		result = prime * result + (int) (castleLevel ^ (castleLevel >>> 32));
+		result = prime * result + (int) (farmLevel ^ (farmLevel >>> 32));
+		result = prime * result + (int) (forestLevel ^ (forestLevel >>> 32));
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + (int) (innLevel ^ (innLevel >>> 32));
+		result = prime * result + (int) (itemShopLevel ^ (itemShopLevel >>> 32));
+		result = prime * result + (int) (mineLevel ^ (mineLevel >>> 32));
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + (int) (theme ^ (theme >>> 32));
+		result = prime * result + (int) (weaponShopLevel ^ (weaponShopLevel >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		City other = (City) obj;
+		if (armourShopLevel != other.armourShopLevel)
+			return false;
+		if (baracksLevel != other.baracksLevel)
+			return false;
+		if (castleLevel != other.castleLevel)
+			return false;
+		if (farmLevel != other.farmLevel)
+			return false;
+		if (forestLevel != other.forestLevel)
+			return false;
+		if (id != other.id)
+			return false;
+		if (innLevel != other.innLevel)
+			return false;
+		if (itemShopLevel != other.itemShopLevel)
+			return false;
+		if (mineLevel != other.mineLevel)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (theme != other.theme)
+			return false;
+		if (weaponShopLevel != other.weaponShopLevel)
+			return false;
+		return true;
+	}
 	
 }
