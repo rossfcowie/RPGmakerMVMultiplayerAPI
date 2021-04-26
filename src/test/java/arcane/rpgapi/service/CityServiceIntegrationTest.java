@@ -31,7 +31,7 @@ public class CityServiceIntegrationTest {
 	CityRepository repo;
 	
 
-	City validCity = new City(1,"vengatown",1,0,0,0,0,0,0,0,0,0);
+	City validCity = new City(1,"vengatown",1,0,0,0,0,0,0);
 	
 	@BeforeEach
 	void init() {
@@ -45,7 +45,7 @@ public class CityServiceIntegrationTest {
 	}
 	@Test
 	void createWithNameTest() {
-		City validCity2 = new City(validCity.getId()+1,"vengatown 2",1,0,0,0,0,0,0,0,0,0);
+		City validCity2 = new City(validCity.getId()+1,"vengatown 2",1,0,0,0,0,0,0);
 		Assertions.assertEquals(validCity2,service.create("vengatown 2"));
 	}
 	@Test
@@ -60,7 +60,7 @@ public class CityServiceIntegrationTest {
 	
 	@Test
 	void updateTest() {
-		City updatedCity = new City(validCity.getId(),"vengatown",1,1,1,1,1,1,1,1,1,1);
+		City updatedCity = new City(validCity.getId(),"vengatown",1,1,1,1,1,1,1);
 		Assertions.assertEquals(updatedCity,service.update(updatedCity));
 	}
 	

@@ -31,7 +31,7 @@ public class CityServiceUnitTest {
 	@Autowired
 	private CityService cityService;
 
-	City validCity = new City(1,"vengatown",0,0,0,0,0,0,0,0,0,0);
+	City validCity = new City(1,"vengatown",0,0,0,0,0,0,0);
 
 	
 	@Test
@@ -42,7 +42,7 @@ public class CityServiceUnitTest {
 	}
 	@Test
 	void createWithNameTest() {
-		City validCity2 = new City(2,"vengatown 2",0,0,0,0,0,0,0,0,0,0);
+		City validCity2 = new City(2,"vengatown 2",0,0,0,0,0,0,0);
 		when(repo.save(Mockito.any(City.class))).thenReturn(validCity2);
 		Assertions.assertEquals(validCity2,cityService.create("vengatown 2"));
 		verify(repo, times(1)).save(Mockito.any(City.class));
@@ -63,7 +63,7 @@ public class CityServiceUnitTest {
 	
 	@Test
 	void updateTest() {
-		City updatedCity = new City(1,"vengatown",1,1,1,1,1,1,1,1,1,1);
+		City updatedCity = new City(1,"vengatown",1,1,1,1,1,1,1);
 		when(repo.findById(Mockito.anyLong())).thenReturn(Optional.of(validCity));
 		when(repo.save(Mockito.any(City.class))).thenReturn(updatedCity);
 		Assertions.assertEquals(updatedCity,cityService.update(updatedCity));

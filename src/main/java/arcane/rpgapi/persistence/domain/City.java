@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import com.sun.istack.NotNull;
 
@@ -24,15 +25,18 @@ public class City {
 	private long mineLevel = 0L;
 	private long farmLevel = 0L;
 	private long innLevel = 0L;
-	private long itemShopLevel = 0L;
-	private long armourShopLevel = 0L;
-	private long weaponShopLevel = 0L;
+	@OneToOne
+	private Shop itemShop;
+	@OneToOne
+	private Shop armourShop;
+	@OneToOne
+	private Shop weaponShop;
 	private long baracksLevel = 0L;
 	
 	
 	
 	public City(long id, String name, long theme, long castleLevel, long forestLevel, long mineLevel, long farmLevel,
-			long innLevel, long itemShopLevel, long armourShopLevel, long weaponShopLevel, long baracksLevel) {
+			long innLevel, long baracksLevel) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -42,9 +46,6 @@ public class City {
 		this.mineLevel = mineLevel;
 		this.farmLevel = farmLevel;
 		this.innLevel = innLevel;
-		this.itemShopLevel = itemShopLevel;
-		this.armourShopLevel = armourShopLevel;
-		this.weaponShopLevel = weaponShopLevel;
 		this.baracksLevel = baracksLevel;
 	}
 	
@@ -56,9 +57,9 @@ public class City {
 		this.mineLevel = city.mineLevel;
 		this.farmLevel = city.farmLevel;
 		this.innLevel = city.innLevel;
-		this.itemShopLevel = city.itemShopLevel;
-		this.armourShopLevel = city.armourShopLevel;
-		this.weaponShopLevel = city.weaponShopLevel;
+		this.itemShop = city.itemShop;
+		this.armourShop = city.armourShop;
+		this.weaponShop = city.weaponShop;
 		this.baracksLevel = city.baracksLevel;
 		
 	}
@@ -72,9 +73,6 @@ public class City {
 		this.mineLevel = 0;
 		this.farmLevel = 0;
 		this.innLevel = 0;
-		this.itemShopLevel = 0;
-		this.armourShopLevel = 0;
-		this.weaponShopLevel = 0;
 		this.baracksLevel = 0;
 		
 	}
@@ -87,9 +85,6 @@ public class City {
 		this.mineLevel = 0;
 		this.farmLevel = 0;
 		this.innLevel = 0;
-		this.itemShopLevel = 0;
-		this.armourShopLevel = 0;
-		this.weaponShopLevel = 0;
 		this.baracksLevel = 0;
 	}
 	public long getId() {
@@ -116,14 +111,14 @@ public class City {
 	public long getInnLevel() {
 		return innLevel;
 	}
-	public long getItemShopLevel() {
-		return itemShopLevel;
+	public Shop getItemShop() {
+		return itemShop;
 	}
-	public long getArmourShopLevel() {
-		return armourShopLevel;
+	public Shop getArmourShop() {
+		return armourShop;
 	}
-	public long getWeaponShopLevel() {
-		return weaponShopLevel;
+	public Shop getWeaponShop() {
+		return weaponShop;
 	}
 	public long getBaracksLevel() {
 		return baracksLevel;
@@ -152,14 +147,14 @@ public class City {
 	public void setInnLevel(long innLevel) {
 		this.innLevel = innLevel;
 	}
-	public void setItemShopLevel(long itemShopLevel) {
-		this.itemShopLevel = itemShopLevel;
+	public void setItemShop(Shop itemShop) {
+		this.itemShop = itemShop;
 	}
-	public void setArmourShopLevel(long armourShopLevel) {
-		this.armourShopLevel = armourShopLevel;
+	public void setArmourShop(Shop armourShop) {
+		this.armourShop = armourShop;
 	}
-	public void setWeaponShopLevel(long weaponShopLevel) {
-		this.weaponShopLevel = weaponShopLevel;
+	public void setWeaponShop(Shop weaponShop) {
+		this.weaponShop = weaponShop;
 	}
 	public void setBaracksLevel(long baracksLevel) {
 		this.baracksLevel = baracksLevel;
@@ -169,26 +164,26 @@ public class City {
 	public String toString() {
 		return "City [id=" + id + ", name=" + name + ", theme=" + theme + ", castleLevel=" + castleLevel
 				+ ", forestLevel=" + forestLevel + ", mineLevel=" + mineLevel + ", farmLevel=" + farmLevel
-				+ ", innLevel=" + innLevel + ", itemShopLevel=" + itemShopLevel + ", armourShopLevel=" + armourShopLevel
-				+ ", weaponShopLevel=" + weaponShopLevel + ", baracksLevel=" + baracksLevel + "]";
+				+ ", innLevel=" + innLevel + ", itemShop=" + itemShop + ", armourShop=" + armourShop
+				+ ", weaponShop=" + weaponShop + ", baracksLevel=" + baracksLevel + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (armourShopLevel ^ (armourShopLevel >>> 32));
+		result = prime * result + ((armourShop == null) ? 0 : armourShop.hashCode());
 		result = prime * result + (int) (baracksLevel ^ (baracksLevel >>> 32));
 		result = prime * result + (int) (castleLevel ^ (castleLevel >>> 32));
 		result = prime * result + (int) (farmLevel ^ (farmLevel >>> 32));
 		result = prime * result + (int) (forestLevel ^ (forestLevel >>> 32));
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + (int) (innLevel ^ (innLevel >>> 32));
-		result = prime * result + (int) (itemShopLevel ^ (itemShopLevel >>> 32));
+		result = prime * result + ((itemShop == null) ? 0 : itemShop.hashCode());
 		result = prime * result + (int) (mineLevel ^ (mineLevel >>> 32));
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + (int) (theme ^ (theme >>> 32));
-		result = prime * result + (int) (weaponShopLevel ^ (weaponShopLevel >>> 32));
+		result = prime * result + ((weaponShop == null) ? 0 : weaponShop.hashCode());
 		return result;
 	}
 
@@ -201,7 +196,10 @@ public class City {
 		if (getClass() != obj.getClass())
 			return false;
 		City other = (City) obj;
-		if (armourShopLevel != other.armourShopLevel)
+		if (armourShop == null) {
+			if (other.armourShop != null)
+				return false;
+		} else if (!armourShop.equals(other.armourShop))
 			return false;
 		if (baracksLevel != other.baracksLevel)
 			return false;
@@ -215,7 +213,10 @@ public class City {
 			return false;
 		if (innLevel != other.innLevel)
 			return false;
-		if (itemShopLevel != other.itemShopLevel)
+		if (itemShop == null) {
+			if (other.itemShop != null)
+				return false;
+		} else if (!itemShop.equals(other.itemShop))
 			return false;
 		if (mineLevel != other.mineLevel)
 			return false;
@@ -226,7 +227,10 @@ public class City {
 			return false;
 		if (theme != other.theme)
 			return false;
-		if (weaponShopLevel != other.weaponShopLevel)
+		if (weaponShop == null) {
+			if (other.weaponShop != null)
+				return false;
+		} else if (!weaponShop.equals(other.weaponShop))
 			return false;
 		return true;
 	}

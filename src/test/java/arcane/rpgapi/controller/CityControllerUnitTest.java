@@ -30,7 +30,7 @@ public class CityControllerUnitTest {
 	private CityController controller;
 	
 
-	City validCity = new City(1,"vengatown",0,0,0,0,0,0,0,0,0,0);
+	City validCity = new City(1,"vengatown",0,0,0,0,0,0,0);
 	
 	@BeforeEach
 	void init() {
@@ -67,7 +67,7 @@ public class CityControllerUnitTest {
 	}
 	@Test
 	void updateTest() {
-		City validCity2 = new City(1,"vengatown",1,1,5,4,7,8,4,2,3,4);
+		City validCity2 = new City(1,"vengatown",1,1,5,4,7,8,4);
 		when(service.update(Mockito.any(City.class))).thenReturn(validCity);
 		ResponseEntity<City> response = new ResponseEntity<>(validCity, HttpStatus.OK);
 		assertThat(response).isEqualTo(controller.update(validCity2));

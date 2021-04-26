@@ -14,17 +14,21 @@ import arcane.rpgapi.persistence.domain.City;
 import arcane.rpgapi.persistence.domain.Player;
 import arcane.rpgapi.persistence.repo.CityRepository;
 import arcane.rpgapi.persistence.repo.PlayerRepository;
+import arcane.rpgapi.persistence.repo.ShopRepository;
 
 @Service
 public class CityService {
 
 	
+	private ShopRepository sRepo;
+	
 	private CityRepository repo;
+	
     private ModelMapper mapper;
 	
-    public CityService(CityRepository repo, ModelMapper mapper) {
+    public CityService(CityRepository repo, ModelMapper mapper,ShopRepository sRepo) {
         super();
-        
+        this.sRepo = sRepo;
         this.repo = repo;
         this.mapper = mapper;
     }
@@ -36,6 +40,9 @@ public class CityService {
 	}
 	
 	public City create(City city) {
+		city.setItemShop(sRepo.save(city.getItemShop()));
+		city.setWeaponShop(sRepo.save(city.getWeaponShop()));
+		city.setArmourShop(sRepo.save(city.getArmourShop()));
 		City created = this.repo.save(city);
     	return created;
 	}
