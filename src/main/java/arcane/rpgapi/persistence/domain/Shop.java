@@ -83,6 +83,20 @@ public class Shop {
 	public String toString() {
 		return "Shop [id=" + id + ", level=" + level + ", wares=" + wares + "]";
 	}
+	public void setAll(Shop shop) {
+		this.wares = shop.wares;
+		this.level = shop.level;
+	}
+	public void buy(Long item) {
+		if(wares.containsKey(item)) {
+			if(wares.get(item)>1) {
+				wares.replace(item,wares.get(item)-1);
+			}else {
+				wares.remove(item);
+			}
+		}
+		
+	}
 	
 
 	

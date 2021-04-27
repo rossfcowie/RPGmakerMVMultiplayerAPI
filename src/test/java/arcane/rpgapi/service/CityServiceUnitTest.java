@@ -19,20 +19,24 @@ import arcane.rpgapi.dto.MovementDTO;
 import arcane.rpgapi.dto.PlayerDTO;
 import arcane.rpgapi.persistence.domain.City;
 import arcane.rpgapi.persistence.domain.Player;
+import arcane.rpgapi.persistence.domain.Shop;
 import arcane.rpgapi.persistence.repo.CityRepository;
 import arcane.rpgapi.persistence.repo.PlayerRepository;
+import arcane.rpgapi.persistence.repo.ShopRepository;
 
 @SpringBootTest
 public class CityServiceUnitTest {
 
 	@MockBean
 	CityRepository repo;
-	
+	@MockBean
+	ShopRepository sRepo;
 	@Autowired
 	private CityService cityService;
 
 	City validCity = new City(1,"vengatown",0,0,0,0,0,0,0);
 
+	Shop validShop = new Shop();
 	
 	@Test
 	void createTest() {
@@ -65,6 +69,7 @@ public class CityServiceUnitTest {
 	void updateTest() {
 		City updatedCity = new City(1,"vengatown",1,1,1,1,1,1,1);
 		when(repo.findById(Mockito.anyLong())).thenReturn(Optional.of(validCity));
+		when(sRepo.findById(Mockito.anyLong())).thenReturn(Optional.of(validShop));
 		when(repo.save(Mockito.any(City.class))).thenReturn(updatedCity);
 		Assertions.assertEquals(updatedCity,cityService.update(updatedCity));
 		verify(repo, times(1)).findById(Mockito.anyLong());

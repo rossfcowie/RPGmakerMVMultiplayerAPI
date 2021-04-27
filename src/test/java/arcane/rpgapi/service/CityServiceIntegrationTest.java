@@ -17,7 +17,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import arcane.rpgapi.persistence.domain.City;
+import arcane.rpgapi.persistence.domain.Shop;
 import arcane.rpgapi.persistence.repo.CityRepository;
+import arcane.rpgapi.persistence.repo.ShopRepository;
 
 
 @SpringBootTest
@@ -29,12 +31,18 @@ public class CityServiceIntegrationTest {
 	
 	@Autowired
 	CityRepository repo;
-	
+	@Autowired
+	ShopRepository sRepo;
 
 	City validCity = new City(1,"vengatown",1,0,0,0,0,0,0);
-	
+
+	Shop validShop = new Shop();
 	@BeforeEach
 	void init() {
+		validShop= sRepo.save(validShop);
+		validCity.setArmourShop(validShop);
+		validCity.setWeaponShop(validShop);
+		validCity.setItemShop(validShop);
 		validCity = repo.save(validCity);
 		
 	}
@@ -60,7 +68,7 @@ public class CityServiceIntegrationTest {
 	
 	@Test
 	void updateTest() {
-		City updatedCity = new City(validCity.getId(),"vengatown",1,1,1,1,1,1,1);
+		City updatedCity = new City(validCity.getId(),"vengatown",validShop,validShop,validShop,1,1,1,1,1,1,1);
 		Assertions.assertEquals(updatedCity,service.update(updatedCity));
 	}
 	

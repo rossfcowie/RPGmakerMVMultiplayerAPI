@@ -45,6 +45,9 @@ public class City {
 		this.forestLevel = forestLevel;
 		this.mineLevel = mineLevel;
 		this.farmLevel = farmLevel;
+		this.itemShop = new Shop();
+		this.armourShop = new Shop();
+		this.weaponShop = new Shop();
 		this.innLevel = innLevel;
 		this.baracksLevel = baracksLevel;
 	}
@@ -74,6 +77,9 @@ public class City {
 		this.farmLevel = 0;
 		this.innLevel = 0;
 		this.baracksLevel = 0;
+		this.itemShop = new Shop();
+		this.armourShop = new Shop();
+		this.weaponShop = new Shop();
 		
 	}
 	
@@ -87,6 +93,22 @@ public class City {
 		this.innLevel = 0;
 		this.baracksLevel = 0;
 	}
+	public City(long id, String name, Shop itemShop, Shop armourShop, Shop weaponShop, int theme, int castleLevel, int forestLevel
+			, int mineLevel,int farmLevel, int innLevel, int baracksLevel) {
+		this.id = id;
+		this.name = name;
+		this.theme = theme;
+		this.castleLevel = castleLevel;
+		this.forestLevel = forestLevel;
+		this.mineLevel = mineLevel;
+		this.farmLevel = farmLevel;
+		this.itemShop = itemShop;
+		this.armourShop = armourShop;
+		this.weaponShop = weaponShop;
+		this.innLevel = innLevel;
+		this.baracksLevel = baracksLevel;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -196,11 +218,6 @@ public class City {
 		if (getClass() != obj.getClass())
 			return false;
 		City other = (City) obj;
-		if (armourShop == null) {
-			if (other.armourShop != null)
-				return false;
-		} else if (!armourShop.equals(other.armourShop))
-			return false;
 		if (baracksLevel != other.baracksLevel)
 			return false;
 		if (castleLevel != other.castleLevel)
@@ -213,11 +230,7 @@ public class City {
 			return false;
 		if (innLevel != other.innLevel)
 			return false;
-		if (itemShop == null) {
-			if (other.itemShop != null)
-				return false;
-		} else if (!itemShop.equals(other.itemShop))
-			return false;
+
 		if (mineLevel != other.mineLevel)
 			return false;
 		if (name == null) {
@@ -226,11 +239,7 @@ public class City {
 		} else if (!name.equals(other.name))
 			return false;
 		if (theme != other.theme)
-			return false;
-		if (weaponShop == null) {
-			if (other.weaponShop != null)
-				return false;
-		} else if (!weaponShop.equals(other.weaponShop))
+
 			return false;
 		return true;
 	}

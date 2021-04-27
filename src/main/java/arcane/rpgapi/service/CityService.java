@@ -12,6 +12,7 @@ import arcane.rpgapi.dto.MovementDTO;
 import arcane.rpgapi.dto.PlayerDTO;
 import arcane.rpgapi.persistence.domain.City;
 import arcane.rpgapi.persistence.domain.Player;
+import arcane.rpgapi.persistence.domain.Shop;
 import arcane.rpgapi.persistence.repo.CityRepository;
 import arcane.rpgapi.persistence.repo.PlayerRepository;
 import arcane.rpgapi.persistence.repo.ShopRepository;
@@ -36,6 +37,10 @@ public class CityService {
 	public City create(String name) {
 		City created = new City(name);
 		created = this.repo.save(created);
+		created.setItemShop(sRepo.save(created.getItemShop()));
+		created.setWeaponShop(sRepo.save(created.getWeaponShop()));
+		created.setArmourShop(sRepo.save(created.getArmourShop()));
+		created = this.repo.save(created);
     	return created;
 	}
 	
@@ -48,6 +53,15 @@ public class CityService {
 	}
 
 	public City update(City city) {
+		Shop ishop = this.sRepo.findById(city.getItemShop().getId()).orElseThrow();
+		ishop.setAll(city.getItemShop());
+		city.setItemShop(sRepo.save(ishop));
+		Shop wshop = this.sRepo.findById(city.getWeaponShop().getId()).orElseThrow();
+		wshop.setAll(city.getWeaponShop());
+		city.setWeaponShop(sRepo.save(wshop));
+		Shop ashop = this.sRepo.findById(city.getArmourShop().getId()).orElseThrow();
+		ashop.setAll(city.getArmourShop());
+		city.setArmourShop(sRepo.save(ashop));
 		City updated =  this.repo.findById(city.getId()).orElseThrow();
 		updated.setAll(city);
 		updated = this.repo.save(updated);
