@@ -38,6 +38,16 @@ var player = {
   "luk":1
 }
 
+Scene_Shop.prototype.doBuy = function(number) {
+  fetch(ServerUrl+"/shop/"+ $gameSystem.curshop + "/" +this._item.id ,{ 
+    method: "Put"});
+  $gameParty.loseGold(number * this.buyingPrice());
+  $gameParty.gainItem(this._item, number);
+
+};
+
+
+
 async function postMyself(name) {
   player.username = name;
   player.hp = $gameActors.actor(1).hp
@@ -70,7 +80,7 @@ async function postMyself(name) {
   };
 
 async function getPlayers() {
-  fetch(ServerUrl+"/playerLocations/"+player.mapID).then((res)=>{
+  fetch(ServerUrl+"/playerLocations/here/"+player.mapID).then((res)=>{
     if (res.status !== 200) {
       console.log(
         `Looks like there was a problem.Status Code: ${res.status}`
@@ -114,7 +124,7 @@ function getPlayer(id) {
 
 async function getAllPlayers(){
   getPlayers();
-  console.log("$==GetAllPlayers==");
+  console.log(players);
   for (playera of players) {
     console.log($gameMap._mapId);
     console.log(playera.mapID);
