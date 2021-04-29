@@ -1,5 +1,6 @@
 package arcane.rpgapi.persistence.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,11 +26,11 @@ public class City {
 	private long mineLevel = 0L;
 	private long farmLevel = 0L;
 	private long innLevel = 0L;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Shop itemShop;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Shop armourShop;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Shop weaponShop;
 	private long baracksLevel = 0L;
 	
@@ -230,7 +231,6 @@ public class City {
 			return false;
 		if (innLevel != other.innLevel)
 			return false;
-
 		if (mineLevel != other.mineLevel)
 			return false;
 		if (name == null) {

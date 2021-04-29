@@ -39,13 +39,32 @@ var player = {
 }
 
 Scene_Shop.prototype.doBuy = function(number) {
-  fetch(ServerUrl+"/shop/"+ $gameSystem.curshop + "/" +this._item.id ,{ 
-    method: "Put"});
-  $gameParty.loseGold(number * this.buyingPrice());
-  $gameParty.gainItem(this._item, number);
-
+  for (let index = 1; index <= number; index++) {
+    fetch(ServerUrl+"/shop/"+ $gameSystem.curshop.id + "/" +this._item.id ,{ 
+      method: "Put"});
+      $gameParty.loseGold(1 * this.buyingPrice());
+      $gameParty.gainItem(this._item, 1);
+      $gameSystem.curshop.wares[this._item.id] = $gameSystem.curshop.wares[this._item.id]-1;
+      console.log($gameSystem.curshop.wares[this._item.id]);
+  }
+  getCities();
+  };
+  Window_ShopBuy.prototype.isEnabled = function(item) {
+    return (item && this.price(item) <= this._money &&
+            !$gameParty.hasMaxItems(item) && $gameSystem.curshop.wares[item.id]>0);
 };
 
+  Scene_Shop.prototype.maxBuy = function() {
+    
+    var max = $gameParty.maxItems(this._item) - $gameParty.numItems(this._item);
+    var price = this.buyingPrice();
+    max = Math.min(max,$gameSystem.curshop.wares[this._item.id])
+    if (price > 0) {
+        return Math.min(max, Math.floor(this.money() / price));
+    } else {
+        return max;
+    }
+};
 
 
 async function postMyself(name) {
@@ -73,7 +92,7 @@ async function postMyself(name) {
             );
             return res.json();
           }
-          res.json().then(data =>{player = data; console.log(player); });
+          res.json().then(data =>{player = data; });
         })
         .catch((err) =>{ console.log(err); return});
         
@@ -124,20 +143,16 @@ function getPlayer(id) {
 
 async function getAllPlayers(){
   getPlayers();
-  console.log(players);
+
   for (playera of players) {
-    console.log($gameMap._mapId);
-    console.log(playera.mapID);
     if($gameMap._mapId == playera.mapID){
-    console.log(playera);
     if(playera.id ==player.id){
 
     }else{
     Galv.SPAWN.event(1,playera.x,playera.y);
-    console.log(playera.id)
+
     $gameMap._events[$gameMap._lastSpawnEventId].mid =playera.id;
-    console.log($gameMap._lastSpawnEventId)
-    console.log($gameMap._events[$gameMap._lastSpawnEventId])
+
   }
   }
 }}
@@ -159,7 +174,7 @@ async function moveMyself(mapID,x,y) {
             );
             return;
           }else{
-            console.log(player.username);
+
           }
           res.json().then()
         })
@@ -193,7 +208,7 @@ player.luk = $gameActors.actor(1).luk
           );
           return;
         }else{
-          console.log(player.username);
+
         }
         res.json().then()
       })
@@ -220,7 +235,7 @@ async function sleepmyself() {
             );
             return;
           }else{
-            console.log(player.username);
+
           }
           res.json().then()
         })

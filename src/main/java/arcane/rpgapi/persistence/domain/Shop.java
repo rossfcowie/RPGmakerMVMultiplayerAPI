@@ -2,22 +2,53 @@ package arcane.rpgapi.persistence.domain;
 
 
 import java.util.HashMap;
+import java.util.Map;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapKeyColumn;
+import javax.persistence.OneToMany;
+
 
 @Entity
-public class Shop {
+public class Shop implements levelable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private long level = 0;
-	private HashMap<Long,Long> wares;
+	private long expReq = 0;
+	private long maxlevel=2;
 	
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name = "FOO_TABLE", joinColumns = @JoinColumn(name = "fooId"))
+	@MapKeyColumn(name="mapKey")
+	@Column(name = "mapValue")
+	private Map<Long,Long> wares =new HashMap<Long, Long>();
 	
+	@Override
+	public void levelUp() {
+		if(level<maxlevel) {
+			level++;
+		}
+		
+	}
+	@Override
+	public void gainExp(long gained) {
+		expReq-=gained;
+		if(expReq<0) {
+			levelUp();
+			expReq += 25 + level * Math.floor(Math.pow(level, 1.1));
+		}
+		
+	}
 	
 	
 	
@@ -67,7 +98,7 @@ public class Shop {
 	public long getLevel() {
 		return level;
 	}
-	public HashMap<Long, Long> getWares() {
+	public Map<Long, Long> getWares() {
 		return wares;
 	}
 	public void setId(long id) {
@@ -97,6 +128,22 @@ public class Shop {
 		}
 		
 	}
+	public void add(Long item) {
+		if(wares.containsKey(item)) {
+			if(wares.get(item)>0) {
+				wares.replace(item,wares.get(item)+(3+(level*level)-item));
+			}
+		}else {
+			wares.put(item,1L);
+		}
+		
+	}
+	public void restock() {
+		for (long i = 1; i <=1+ (level*level); i++) {
+			add(i);
+		}
+	}
+
 	
 
 	

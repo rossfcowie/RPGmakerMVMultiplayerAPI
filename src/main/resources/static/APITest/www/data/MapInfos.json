@@ -6,7 +6,7 @@ null,
 {"id":4,"expanded":false,"name":"Spawn map","order":2,"parentId":0,"scrollX":728,"scrollY":414.22222222222223},
 {"id":5,"expanded":false,"name":"Forest","order":5,"parentId":1,"scrollX":1404,"scrollY":798.8571428571428},
 {"id":6,"expanded":true,"name":"TestCity","order":6,"parentId":0,"scrollX":1404,"scrollY":798.8571428571428},
-{"id":7,"expanded":true,"name":"Weapon shop","order":7,"parentId":6,"scrollX":1404,"scrollY":798.8571428571428},
+{"id":7,"expanded":true,"name":"Weapon shop","order":7,"parentId":6,"scrollX":1404,"scrollY":824.5714285714286},
 {"id":8,"expanded":true,"name":"Armour shop","order":8,"parentId":6,"scrollX":764.5714285714286,"scrollY":777.4285714285713},
 {"id":9,"expanded":true,"name":"Item shop","order":9,"parentId":6,"scrollX":1402.2857142857142,"scrollY":777.4285714285713}
 ]

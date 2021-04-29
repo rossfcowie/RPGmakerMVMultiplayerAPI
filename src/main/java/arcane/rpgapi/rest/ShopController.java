@@ -30,6 +30,12 @@ public class ShopController {
 	@PutMapping(value = "/{shop}/{item}")
 	public ResponseEntity<Boolean> buy(@PathVariable Long shop, @PathVariable Long item) {
 		service.buy(shop,item);
+		service.addExp(shop, item *5L);
+		return new ResponseEntity<>(true,HttpStatus.OK);
+	}
+	@PutMapping(value = "/exp/{shop}/{exp}")
+	public ResponseEntity<Boolean> exp(@PathVariable Long shop, @PathVariable Long exp) {
+		service.addExp(shop,exp);
 		return new ResponseEntity<>(true,HttpStatus.OK);
 	}
 }
